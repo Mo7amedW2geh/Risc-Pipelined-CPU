@@ -1,4 +1,4 @@
-````markdown
+```
 # RISC Assembler (`risc_assembler.py`)
 
 This is a custom two-pass assembler for our 32-bit RISC ISA, used in the Spring 2025 CPU project.
@@ -25,7 +25,7 @@ It converts human-readable assembly `.asm` files into hexadecimal `.hex` files c
 ### 🔸 Interactive Mode
 ```bash
 python risc_assembler.py
-````
+```
 
 * Type in assembly code line-by-line
 * End with a blank line
@@ -66,4 +66,4 @@ v2.0 raw
 
 Assembler developed by **Mohamed Wageh Mahmoud** with **ChatGPT**, Spring 2025.
 
-````
+```
