@@ -12,6 +12,13 @@ It includes:
 
 ---
 
+## 📚 Project Specification
+
+> This project was developed according to the **Spring 2025 RISC Processor Specification** provided by the course instructors.
+> For full details on the architecture, formats, and expected deliverables, refer to the official [Project\_ Spring\_2025\_Final.pdf](https://drive.google.com/file/d/1cPeahDGvCrryzEOy8KSD3mZfsC8IqQtV/view?usp=drive_link).
+
+---
+
 ## 🚀 Project Overview
 
 * ✅ 32-bit RISC ISA with R-type, I-type, and SB-type instructions
