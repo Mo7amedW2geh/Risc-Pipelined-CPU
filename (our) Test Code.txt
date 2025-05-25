@@ -1,0 +1,73 @@
+# -------- Initialize Registers --------
+SET   R1, 100            ; R1 = 0x64
+SET   R2, 20             ; R2 = 0x14
+SET   R3, 5              ; R3 = 0x05
+SSET  R4, 0x1000         ; R4 = 0x1000 (array base)
+SET   R5, 4              ; R5 = 0x04 (array length)
+SET   R6, 1              ; R6 = 0x01 (constant 1)
+
+# -------- R-Type ALU Tests --------
+ADD   R7, R1, R2         ; R7 = 0x78
+SUB   R8, R1, R2         ; R8 = 0x50
+AND   R9, R1, R2         ; R9 = 0x04
+OR    R10, R1, R2        ; R10 = 0x74
+XOR   R11, R1, R2        ; R11 = 0x70
+NOR   R12, R1, R2        ; R12 = 0xFFFFFF8B
+SLT   R13, R2, R1        ; R13 = 0x01
+SLTU  R14, R1, R2        ; R14 = 0x00
+SEQ   R15, R1, R1        ; R15 = 0x01
+MUL   R16, R2, R3        ; R16 = 0x64
+
+# -------- Shift and Rotate Tests (R-Type) --------
+SLL   R17, R1, R3        ; R17 = 0x64 << 5 = 0xC80
+SRL   R18, R1, R3        ; R18 = 0x64 >> 5 = 0x03
+SRA   R19, R1, R3        ; R19 = 0x64 >> 5 (arith) = 0x03
+ROR   R20, R1, R3        ; R20 = ROR(0x64, 5) = 0x20000003
+
+# -------- I-Type ALU Tests --------
+ADDI  R21, R2, 3         ; R21 = 0x14 + 3 = 0x17
+ORI   R22, R2, 0x0F      ; R22 = 0x14 | 0x0F = 0x1F
+ANDI  R23, R2, 0xF0      ; R23 = 0x14 & 0xF0 = 0x10
+SEQI  R24, R2, 20        ; R24 = (R2 == 20) = 1
+SLTI  R25, R2, 10        ; R25 = (20 < 10) = 0
+SLTIU R26, R2, 30        ; R26 = (20 < 30) = 1
+
+# -------- Shift and Rotate Tests (I-Type) --------
+SLLI  R27, R2, 2         ; R27 = 0x14 << 2 = 0x50
+SRLI  R28, R2, 2         ; R28 = 0x14 >> 2 = 0x05
+SRAI  R29, R2, 2         ; R29 = 0x14 >> 2 (arith) = 0x05
+RORI  R30, R2, 4         ; R30 = ROR(0x14, 4) = 0x40000001
+
+# -------- Memory Write Test --------
+SET   R23, 0             ; index = 0
+loop_init:
+ADD   R24, R4, R23       ; address = base + index
+SW    R6, 0(R24)         ; Mem[addr] = 1
+ADDI  R23, R23, 1
+SEQI  R25, R23, 4
+BNE   R25, R0, loop_init_end
+JALR  R0, R0, loop_init
+loop_init_end:
+
+# -------- Memory Read and Sum --------
+SET   R26, 0             ; sum = 0
+SET   R27, 0             ; index = 0
+loop_sum:
+ADD   R28, R4, R27       ; address = base + index
+LW    R29, 0(R28)        ; R29 = Mem[addr]
+ADD   R26, R26, R29      ; sum += value
+ADDI  R27, R27, 1
+SEQI  R30, R27, 4
+BNE   R30, R0, loop_sum_end
+JALR  R0, R0, loop_sum
+loop_sum_end:
+
+# -------- Branch Test --------
+SET   R31, 0x10
+BEQ   R31, R31, branch_taken
+SET   R31, 0             ; skipped
+branch_taken:
+SET   R31, 0x20          ; R31 = 0x20
+
+# -------- Infinite Loop --------
+BEQ R0, R0, 0
