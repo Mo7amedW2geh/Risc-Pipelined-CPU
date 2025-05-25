@@ -1,4 +1,3 @@
-```
 # RISC Assembler (`risc_assembler.py`)
 
 This is a custom two-pass assembler for our 32-bit RISC ISA, used in the Spring 2025 CPU project.
@@ -65,5 +64,3 @@ v2.0 raw
 ## 👤 Authors
 
 Assembler developed by **Mohamed Wageh Mahmoud** with **ChatGPT**, Spring 2025.
-
-```
