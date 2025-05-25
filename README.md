@@ -1,81 +1,116 @@
-```markdown
-# 32-bit RISC Pipelined CPU Project
+# 🧠 RISC CPU Project – Single-Cycle & Pipelined Design
 
-Final project for the Spring 2025 Computer Architecture course. This repo includes a custom 32-bit RISC ISA processor implemented in Logisim, a Python-based assembler, test programs, and documentation.
+This project implements a custom 32-bit RISC CPU in both **single-cycle** and **pipelined** architectures, developed as part of the Spring 2025 Computer Architecture course.
 
----
+It includes:
 
-## 🔧 Project Highlights
-
-- ✅ Custom 32-bit instruction set architecture (ISA)
-- ✅ Single-cycle and pipelined CPU versions
-- ✅ Python assembler with label and immediate support
-- ✅ Control unit ROM and truth table
-- ✅ Thorough test programs and validation
-- ⚠️ 2-bit branch predictor (bonus) – partially implemented
+* A custom instruction set architecture (ISA)
+* Fully functional Logisim circuit implementations
+* A Python-based two-pass assembler
+* A test suite of assembly programs
+* Bonus (partial): 2-bit branch predictor
 
 ---
 
-## 📁 Structure
+## 🚀 Project Overview
 
-| Folder         | Description                                     |
-|----------------|-------------------------------------------------|
-| `assembler/`   | Python assembler and usage guide                |
-| `circuits/`    | Logisim `.circ` files for single & pipelined CPU|
-| `test_programs/` | Assembly and HEX test programs                |
-| `control_unit/`| Control signal truth table and ROM data         |
-| `documentation/` | Project report in DOCX and PDF format         |
-| `videos/`      | Links to CPU simulation demo videos             |
+* ✅ 32-bit RISC ISA with R-type, I-type, and SB-type instructions
+* ✅ Single-cycle processor implemented in Logisim
+* ✅ Pipelined processor with hazard detection and forwarding logic
+* ✅ Python assembler to convert `.asm` to `.hex` files for Logisim
+* ⚠️ Partial implementation of a 2-bit branch prediction unit (bonus)
 
 ---
 
-## ⚙️ Running the Assembler
+## 📁 Project Structure
+
+| Folder           | Description                                 |
+| ---------------- | ------------------------------------------- |
+| `assembler/`     | Contains `risc_assembler.py` and its README |
+| `circuits/`      | Logisim circuit files (`.circ`)             |
+| `test_programs/` | Assembly and HEX files for simulation       |
+| `control_unit/`  | Control truth table and ROM file            |
+| `documentation/` | Final project report in `.pdf`  |
+
+---
+
+## 🔁 Supported Instructions
+
+### R-Type (Opcode 0)
+
+* Arithmetic/Logic: `ADD`, `SUB`, `MUL`, `XOR`, `OR`, `AND`, `NOR`, `SEQ`, `SLT`, `SLTU`
+* Shift Operations: `SLL`, `SRL`, `SRA`, `ROR`
+
+### I-Type (Opcodes 1–16)
+
+* Immediate Arithmetic: `ADDI`, `ORI`, `ANDI`, `NORI`, `XORI`, `SEQI`, `SLTI`, `SLTIU`
+* Shift Immediate: `SLLI`, `SRLI`, `SRAI`, `RORI`
+* Register Loading: `SET`, `SSET`, `LW`, `JALR`
+
+### SB-Type (Opcodes 17–23)
+
+* Memory Store: `SW`
+* Branching: `BEQ`, `BNE`, `BLT`, `BGE`, `BLTU`, `BGEU`
+
+---
+
+## 🧪 Testing
+
+We’ve written test programs covering:
+
+* Arithmetic/logic operations
+* Memory access (`LW`/`SW`)
+* Branching and jump instructions
+* Label resolution and PC-relative jumps
+* Array summation using procedures
+* Bonus test for 2-bit branch predictor (optional)
+
+All `.asm` files are compiled with our assembler and loaded into Logisim's memory for execution.
+
+---
+
+## ⚙️ How to Assemble & Simulate
+
+### 1. Assemble Your Program
 
 ```bash
 cd assembler
 python risc_assembler.py my_program.asm -o my_program.hex
-````
+```
 
-Then load the `.hex` into the instruction memory of your Logisim circuit.
+### 2. Load into Logisim
 
----
-
-## 📜 Documentation
-
-The project documentation (`Project Report.pdf`) covers:
-
-* Datapath design
-* Control unit signals
-* Simulation results
-* Testing methodology
-* Forwarding, hazard detection, and branch logic
+* Open a `.circ` file (e.g., `pipelined_v2.0.circ`)
+* Load the `.hex` file into instruction memory
+* Run the simulation
 
 ---
 
-## 🎥 Videos
+## 📑 Documentation
 
-> Videos are available via Google Drive:
+The full report is provided in `documentation/Project Report.pdf` and includes:
 
-* [Pipelined CPU Demo](https://drive.google.com/your_demo_video)
-* [Single-Cycle CPU Demo](https://drive.google.com/your_single_cycle_demo)
+* Datapath and control unit diagrams
+* Design of forwarding, hazard detection, and prediction logic
+* Simulation screenshots and result tables
+* Teamwork contributions and testing logs
 
 ---
 
 ## 👥 Team Members
 
-* **Mohamed Wageh Mahmoud (CSE)**
-* **Youssef Ibrahim Mohamed (CSE)**
-* **Mohamed Ahmed Kassem (ECE)**
+* **Mohamed Wageh Mahmoud** – CSE
+* **Youssef Ibrahim Mohamed** – CSE
+* **Mohamed Ahmed Kassem** – ECE
 
 ---
 
-## 🏁 Status
+## ✅ Project Status
 
-| Component        | Status      |
-| ---------------- | ----------- |
-| Single-cycle CPU | ✅ Completed |
-| Pipelined CPU    | ✅ Completed |
-| Assembler        | ✅ Working   |
-| Branch Predictor | ⚠️ Partial  |
-
-```
+| Component               | Status     |
+| ----------------------- | ---------- |
+| ISA + Assembler         | ✅ Complete |
+| Single-Cycle CPU        | ✅ Complete |
+| Pipelined CPU           | ✅ Complete |
+| 2-bit Branch Predictor  | ⚠️ Partial |
+| Documentation + Testing | ✅ Complete |
