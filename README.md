@@ -70,7 +70,6 @@ We’ve written test programs covering:
 * Branching and jump instructions
 * Label resolution and PC-relative jumps
 * Array summation using procedures
-* Bonus test for 2-bit branch predictor (optional)
 
 All `.asm` files are compiled with our assembler and loaded into Logisim's memory for execution.
 
