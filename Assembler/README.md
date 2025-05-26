@@ -158,6 +158,8 @@ loop:
 
 ## 📥 Example Program
 
+### Assembly
+
 ```asm
 SET R1, 10
 SET R2, 20
@@ -171,7 +173,7 @@ equal:
 SET R6, 42
 BEQ R0, R0, -1
 ```
-## Output
+### Hexadecimal
 
 ```
 v2.0 raw
